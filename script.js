@@ -58,13 +58,18 @@ form.addEventListener('submit', async (e) => {
       screenshot: base64File
     };
 
+    const params = new URLSearchParams();
+    params.append("name", name);
+    params.append("phone", phone);
+    params.append("email", email);
+    params.append("college", college);
+    params.append("screenshot", base64File);
+
     const response = await fetch(url, {
       method: 'POST',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+      body: params
+      });
+
 
     if (response.ok) {
       localStorage.setItem('submitted', 'true');
