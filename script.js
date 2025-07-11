@@ -48,7 +48,7 @@ form.addEventListener('submit', async (e) => {
     const base64File = reader.result;
 
     // Replace with your deployed Google Apps Script URL:
-    const url = 'https://script.google.com/macros/s/AKfycbyXa4yfl72PTANtEk7pxWThYQmButgdGWQ21vr7WZqrcLNB7ESrG8RBn7gXX6hUJGPD/exec';
+    const url = 'https://script.google.com/macros/s/AKfycbxbZCB0wJABBj1mjxEI2d6eLWCqnc95buAqISYSMyL8jLHVEyM0KYUOKJl3_NHtQLSkQA/exec';
 
     const payload = {
       name,
