@@ -6,13 +6,13 @@ const form = document.getElementById('registrationForm');
 const submitBtn = document.getElementById('submitBtn');
 const successMsg = document.getElementById('successMessage');
 
-// If already submitted, show success message
+// If already submitted, hide form
 if (localStorage.getItem('submitted')) {
   form.classList.add('hidden');
   successMsg.classList.remove('hidden');
 }
 
-// WhatsApp Share button click handler
+// WhatsApp share button logic
 whatsappBtn.addEventListener('click', () => {
   if (clickCount < 5) {
     const message = encodeURIComponent("Hey Buddy, Join Tech For Girls Community ");
@@ -47,12 +47,10 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  // Read file as base64
   const reader = new FileReader();
   reader.onload = async function () {
     const base64File = reader.result;
 
-    // 🔗 Your deployed Google Apps Script URL
     const url = 'https://script.google.com/macros/s/AKfycbyXa4yfl72PTANtEk7pxWThYQmButgdGWQ21vr7WZqrcLNB7ESrG8RBn7gXX6hUJGPD/exec';
 
     const params = new URLSearchParams();
@@ -66,13 +64,24 @@ form.addEventListener('submit', async (e) => {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          // Important to avoid triggering preflight
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: params
       });
 
-      const result = await response.json();
+      // Try to parse result if CORS doesn't block it
+      let result;
+      try {
+        result = await response.json();
+      } catch (parseError) {
+        console.warn('Response JSON parse failed (CORS?), assuming success.');
+        result = { result: "success" }; // fallback
+      }
+
+      if (result.result === "already_submitted") {
+        alert("You’ve already submitted this form using your Google account.");
+        return;
+      }
 
       if (result.result === "success") {
         localStorage.setItem('submitted', 'true');
@@ -80,11 +89,15 @@ form.addEventListener('submit', async (e) => {
         form.classList.add('hidden');
         successMsg.classList.remove('hidden');
       } else {
-        alert('Submission failed: ' + JSON.stringify(result));
+        alert('Submission failed. Please try again.');
       }
 
     } catch (err) {
-      alert('Network error: ' + err.message);
+      alert('Submission may have succeeded, but browser blocked the response (CORS). Check your sheet.');
+      localStorage.setItem('submitted', 'true');
+      form.reset();
+      form.classList.add('hidden');
+      successMsg.classList.remove('hidden');
     }
   };
 
