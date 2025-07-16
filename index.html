@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tech for Girls Registration</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .hidden {
+      display: none;
+    }
+    #successMessage {
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -13,30 +23,30 @@
     <form id="registrationForm">
       <div class="input-group">
         <label>Name:</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name" required />
       </div>
       <div class="input-group">
         <label>Phone Number:</label>
-        <input type="number" name="phone" required>
+        <input type="number" name="phone" required />
       </div>
       <div class="input-group">
         <label>Email:</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email" required />
       </div>
       <div class="input-group">
         <label>College/Department:</label>
-        <input type="text" name="college" required>
+        <input type="text" name="college" required />
       </div>
 
       <div class="input-group">
         <button type="button" id="whatsappShare">Share on WhatsApp</button>
         <p id="clickCount">Click count: 0/5</p>
-        <p id="shareMessage" class="hidden">Sharing complete. Please continue.</p>
+        <p id="shareMessage" class="hidden">✅ Sharing complete. Please continue.</p>
       </div>
 
       <div class="input-group">
         <label>Upload Screenshot:</label>
-        <input type="file" id="screenshot" name="screenshot" accept="image/*" required>
+        <input type="file" id="screenshot" name="screenshot" accept="image/*" required />
       </div>
 
       <div class="input-group">
