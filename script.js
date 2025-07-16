@@ -81,7 +81,7 @@ form.addEventListener('submit', async (e) => {
       localStorage.setItem('submitted', 'true');
       form.reset();
       form.classList.add('hidden');
-      successMsg.textContent = "✅ Form submitted (response blocked due to CORS)";
+      successMsg.textContent = "🎉 Your submission has been recorded. Thanks for being part of Tech for Girls!";
       successMsg.classList.remove('hidden');
     }
   };
