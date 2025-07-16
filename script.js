@@ -15,7 +15,8 @@ if (localStorage.getItem('submitted')) {
 // WhatsApp share button logic
 whatsappBtn.addEventListener('click', () => {
   if (clickCount < 5) {
-    const message = encodeURIComponent("Hey Buddy, Join Tech For Girls Community ");
+    const siteLink = 'https://sanjanamanne70.github.io/tech.for.girls.registration/';
+    const message = encodeURIComponent(`Hey Buddy, Join Tech For Girls Community 👩‍💻🌸\nRegister here: ${siteLink}`);
     window.open(`https://wa.me/?text=${message}`, '_blank');
     clickCount++;
     clickCounter.textContent = `Click count: ${clickCount}/5`;
