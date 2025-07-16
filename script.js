@@ -6,13 +6,20 @@ const form = document.getElementById('registrationForm');
 const submitBtn = document.getElementById('submitBtn');
 const successMsg = document.getElementById('successMessage');
 
+lottie.loadAnimation({
+  container: document.getElementById('lottieAnimation'),
+  renderer: 'svg',
+  loop: true,
+  autoplay: true,
+  path: 'https://lottie.host/57f1c0ff-90d6-42ed-8e16-bf8c7790e1dc/QxCtODxdoB.json'
+});
+
 // If already submitted, hide form
 if (localStorage.getItem('submitted')) {
   form.classList.add('hidden');
   successMsg.classList.remove('hidden');
 }
 
-// WhatsApp share button logic
 whatsappBtn.addEventListener('click', () => {
   if (clickCount < 5) {
     const siteLink = 'https://sanjanamanne70.github.io/tech.for.girls.registration/';
@@ -27,7 +34,6 @@ whatsappBtn.addEventListener('click', () => {
   }
 });
 
-// Form submission handler
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -70,7 +76,6 @@ form.addEventListener('submit', async (e) => {
         body: params
       });
 
-      // 🔥 FORCE success even if response fails due to CORS
       localStorage.setItem('submitted', 'true');
       form.reset();
       form.classList.add('hidden');
@@ -78,7 +83,6 @@ form.addEventListener('submit', async (e) => {
       successMsg.classList.remove('hidden');
 
     } catch (err) {
-      // Handle submission/network error — show success anyway
       localStorage.setItem('submitted', 'true');
       form.reset();
       form.classList.add('hidden');
@@ -89,4 +93,3 @@ form.addEventListener('submit', async (e) => {
 
   reader.readAsDataURL(file);
 });
-
